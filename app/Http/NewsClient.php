@@ -10,12 +10,14 @@ class NewsClient
 
     public function __construct()
     {
-        $this->client = new Client();
+        $this->client = new Client([
+            'base_uri' => 'http://newsapi.org/v2/'
+        ]);
     }
 
     public function topHeadline($country)
     {
-        $res = $this->client->request('GET', 'http://newsapi.org/v2/top-headlines', [
+        $res = $this->client->request('GET', 'top-headlines', [
             'query' => [
                 'country' => $country,
                 'apiKey' => env('NEWS_API_KEY')
