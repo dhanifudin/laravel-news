@@ -15,7 +15,7 @@ class NewsClient
         ]);
     }
 
-    public function topHeadline($country)
+    public function topHeadlines($country)
     {
         $res = $this->client->request('GET', 'top-headlines', [
             'query' => [

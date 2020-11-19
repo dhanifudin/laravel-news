@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
-    public function index(NewsClient $client)
+    public function index(Request $request, NewsClient $client)
     {
-        $data = $client->topHeadline('us');
+        $country = $request->query('country', env('NEWS_DEFAULT_COUNTRY'));
+        $data = $client->topHeadlines($country);
         return view('news')
             ->with('data', $data);
     }
